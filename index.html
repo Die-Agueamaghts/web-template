@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Wiederverwendbares Lernkarten-Webtemplate"
+    />
+    <title>Lernkarten Template</title>
+    <link rel="stylesheet" href="style/main.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">◆</div>
+          <div>
+            <h1>Lernkarten Template</h1>
+            <p>Neutrale Vorlage für interaktive Webprojekte</p>
+          </div>
+        </div>
+        <button
+          id="themeButton"
+          class="icon-button"
+          type="button"
+          aria-label="Dunkelmodus aktivieren"
+        >
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+      </header>
+
+      <main>
+        <section
+          id="setupScreen"
+          class="screen active"
+          aria-labelledby="setupTitle"
+        >
+          <div class="hero">
+            <span class="eyebrow">Demo-Projekt</span>
+            <h2 id="setupTitle">Lernkarten starten</h2>
+            <p>
+              Ersetze die Beispieldaten durch deine eigenen Inhalte und passe
+              Farben, Texte und Abläufe an.
+            </p>
+          </div>
+
+          <div class="setup-grid">
+            <section class="panel">
+              <h3>Kategorie</h3>
+              <select
+                id="categorySelect"
+                class="select-control"
+                aria-label="Kategorie"
+              ></select>
+            </section>
+            <section class="panel">
+              <h3>Modus</h3>
+              <div id="modeGrid" class="mode-grid">
+                <button
+                  class="mode-card selected"
+                  data-mode="learn"
+                  type="button"
+                >
+                  <span class="mode-icon">📖</span>
+                  <strong>Lernen</strong>
+                  <span>Frage und Antwort direkt anzeigen.</span>
+                </button>
+                <button class="mode-card" data-mode="test" type="button">
+                  <span class="mode-icon">✓</span>
+                  <strong>Test</strong>
+                  <span>Antworten sammeln und am Ende auswerten.</span>
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <button
+            id="startButton"
+            class="primary-button large-button"
+            type="button"
+          >
+            Starten
+          </button>
+          <p id="setupStatus" class="status-text" role="status"></p>
+        </section>
+
+        <section
+          id="exerciseScreen"
+          class="screen"
+          aria-labelledby="exerciseTitle"
+        >
+          <div class="exercise-header">
+            <div>
+              <span id="modeLabel" class="eyebrow">Lernen</span>
+              <h2 id="exerciseTitle">Lernkarte</h2>
+            </div>
+            <div class="progress-box">
+              <span id="progressLabel">1 / 1</span>
+              <div class="progress-track" aria-hidden="true">
+                <div id="progressBar" class="progress-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-strip">
+            <span id="categoryLabel">Beispiele</span>
+          </div>
+
+          <div class="flashcard">
+            <span class="card-label">Frage</span>
+            <div id="questionText" class="question-text">Beispiel</div>
+            <div id="answerArea"></div>
+          </div>
+
+          <div
+            id="feedback"
+            class="feedback"
+            role="status"
+            aria-live="polite"
+          ></div>
+
+          <div class="exercise-actions">
+            <button id="backButton" class="secondary-button" type="button">
+              Zurück
+            </button>
+            <button id="nextButton" class="primary-button" type="button">
+              Weiter
+            </button>
+            <button id="finishButton" class="danger-button" type="button">
+              Beenden
+            </button>
+          </div>
+        </section>
+
+        <section id="resultScreen" class="screen" aria-labelledby="resultTitle">
+          <div class="result-card">
+            <span class="eyebrow">Auswertung</span>
+            <h2 id="resultTitle">Dein Ergebnis</h2>
+            <div class="score-circle"><span id="scorePercent">0%</span></div>
+            <p id="scoreSummary" class="score-summary">0 von 0 richtig</p>
+            <button
+              id="restartButton"
+              class="primary-button large-button"
+              type="button"
+            >
+              Nochmal starten
+            </button>
+            <button
+              id="resultHomeButton"
+              class="secondary-button large-button"
+              type="button"
+            >
+              Zur Auswahl
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">Lernkarten Template · Dummy-Daten</footer>
+    </div>
+    <script src="app/main.js" defer></script>
+  </body>
+</html>

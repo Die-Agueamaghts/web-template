@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {
+      "id": "basics",
+      "name": "Grundlagen",
+      "cards": [
+        { "question": "Beispiel 1", "answer": "Antwort 1" },
+        { "question": "Beispiel 2", "answer": "Antwort 2" },
+        { "question": "Beispiel 3", "answer": "Antwort 3" }
+      ]
+    },
+    {
+      "id": "second-category",
+      "name": "Zweite Kategorie",
+      "cards": [
+        { "question": "Frage A", "answer": "Lösung A" },
+        { "question": "Frage B", "answer": "Lösung B" }
+      ]
+    }
+  ]
+}
