@@ -16,6 +16,7 @@
     exercise: $("#exerciseScreen"),
     result: $("#resultScreen"),
   };
+  const flashcard = $("#flashcard");
 
   function showScreen(name) {
     Object.values(screens).forEach((screen) =>
@@ -98,14 +99,28 @@
 
     const answerArea = $("#answerArea");
     answerArea.innerHTML = "";
+    flashcard.classList.remove("is-flipped", "is-test");
+    flashcard.classList.toggle("is-learn", state.mode === "learn");
     if (state.mode === "learn") {
       const answer = document.createElement("div");
       answer.className = "answer-display";
       answer.textContent = card.answer;
       answerArea.appendChild(answer);
+      flashcard.tabIndex = 0;
+      flashcard.setAttribute("role", "button");
+      flashcard.setAttribute("aria-pressed", "false");
+      flashcard.setAttribute(
+        "aria-label",
+        "Karte umdrehen und Antwort anzeigen",
+      );
       return;
     }
 
+    flashcard.classList.add("is-test");
+    flashcard.removeAttribute("tabindex");
+    flashcard.removeAttribute("role");
+    flashcard.removeAttribute("aria-pressed");
+    flashcard.setAttribute("aria-label", "Antwort eingeben");
     const input = document.createElement("input");
     input.id = "answerInput";
     input.className = "answer-input";
@@ -167,6 +182,18 @@
     localStorage.setItem("templateTheme", theme);
   }
 
+  function flipCard() {
+    if (state.mode !== "learn") return;
+    const flipped = flashcard.classList.toggle("is-flipped");
+    flashcard.setAttribute("aria-pressed", String(flipped));
+    flashcard.setAttribute(
+      "aria-label",
+      flipped
+        ? "Karte zurückdrehen und Frage anzeigen"
+        : "Karte umdrehen und Antwort anzeigen",
+    );
+  }
+
   $("#categorySelect").addEventListener("change", (event) => {
     state.category = event.target.value;
   });
@@ -186,6 +213,13 @@
       document.documentElement.dataset.theme === "dark" ? "light" : "dark",
     ),
   );
+  flashcard.addEventListener("click", flipCard);
+  flashcard.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      flipCard();
+    }
+  });
 
   setTheme(localStorage.getItem("templateTheme") || "light");
   loadData();
